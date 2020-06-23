@@ -14,5 +14,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $comments = \App\Comment::all();
+
+    return view('welcome', compact('comments'));
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
