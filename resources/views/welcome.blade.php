@@ -84,7 +84,7 @@
                     Laravel
                 </div>
                 @livewire('counter')
-                @livewire('comments',['comments' => $comments])
+                @livewire('comments')
 {{--                //<livewire:comments :comments="$comments"/>--}}
                 <div class="links">
                     <a href="https://laravel.com/docs">Docs</a>
