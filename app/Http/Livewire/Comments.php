@@ -3,18 +3,20 @@
 namespace App\Http\Livewire;
 
 use App\Comment;
-use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Comments extends Component
 {
-    public $comments = [];
+    use WithPagination;
+
+    //public $comments = [];
     public $comment = "";
 
     public function mount()
     {
-        $this->comments = Comment::latest()->get();
+        //$this->comments = Comment::latest()->paginate(2);
     }
 
     public function updated($field)
@@ -37,7 +39,7 @@ class Comments extends Component
           ]);
 
         //$this->comments->push($newComment);
-        $this->comments->prepend($newComment);
+       // $this->comments->prepend($newComment);
         $this->comment = "";
 
         session()->flash('success','Comment Added.');
@@ -46,10 +48,9 @@ class Comments extends Component
     public function delComment($comment)
     {
         //$this->comments = $this->comments->where('id','!=', $comment->id);
-        $this->comments = $this->comments->except($comment);
+       // $this->comments = $this->comments->except($comment);
 
         Comment::find($comment)->delete();
-//        $comment->delete();
 
         session()->flash('success','Comment deleted ☺ ');
 
@@ -58,6 +59,7 @@ class Comments extends Component
 
     public function render()
     {
-        return view('livewire.comments');
+        $comments = Comment::latest()->paginate(2);
+        return view('livewire.comments', compact('comments'));
     }
 }

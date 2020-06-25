@@ -27,4 +27,5 @@
     </div>
     @empty
     @endforelse
+    {{ $comments->links() }}
 </div>
