@@ -1,4 +1,4 @@
-<div>
+<div class="container">
     @error('comment')
      <div class="alert-danger">
          {{ $message }}
