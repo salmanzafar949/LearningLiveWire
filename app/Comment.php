@@ -8,7 +8,8 @@ class Comment extends Model
 {
     protected $fillable = [
         'user_id',
-        'comment'
+        'comment',
+        'support_ticket_id'
     ];
 
     protected $guarded = ['id', 'user_id'];

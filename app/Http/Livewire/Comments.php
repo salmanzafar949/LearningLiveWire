@@ -14,6 +14,18 @@ class Comments extends Component
     //public $comments = [];
     public $comment = "";
 
+    public $tickedId;
+
+    // if we have listener name as function name then we don't have to define key value pair
+    protected $listeners = [
+        'ticketSelected' => 'ticketSelected'
+    ];
+
+    public function ticketSelected($ticketId)
+    {
+        $this->tickedId = $ticketId;
+    }
+
     public function mount()
     {
         //$this->comments = Comment::latest()->paginate(2);
@@ -35,7 +47,8 @@ class Comments extends Component
       $newComment = Auth::user()
           ->comments()
           ->create([
-                'comment' => $this->comment
+                'comment' => $this->comment,
+                'support_ticket_id' => $this->tickedId,
           ]);
 
         //$this->comments->push($newComment);
@@ -59,7 +72,10 @@ class Comments extends Component
 
     public function render()
     {
-        $comments = Comment::latest()->paginate(2);
+        $comments = Comment::where('support_ticket_id', $this->tickedId)
+            ->latest()
+            ->paginate(2);
+
         return view('livewire.comments', compact('comments'));
     }
 }
