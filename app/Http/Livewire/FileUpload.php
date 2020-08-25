@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -20,9 +21,9 @@ class FileUpload extends Component
 
     public function save()
     {
-        $this->file->store('files', 'public');
+        $url = $this->file->store('files', 'public');
 
-        $this->file = "";
+        $this->file = null;
     }
 
     public function render()
