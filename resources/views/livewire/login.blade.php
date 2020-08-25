@@ -25,7 +25,7 @@
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" wire:model="formFields.email" class="form-control @error('formFields.password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                                <input id="password" type="password" wire:model="formFields.password" class="form-control @error('formFields.password') is-invalid @enderror" name="password" required autocomplete="current-password">
 
                                 @error('formFields.password')
                                 <span class="invalid-feedback" role="alert">

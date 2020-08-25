@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class Login extends Component
@@ -18,6 +19,16 @@ class Login extends Component
             'formFields.email' => 'required|email|exists:users,email',
             'formFields.password' => 'required|min:8'
         ]);
+
+        $data  = [
+            'email' => $this->formFields['email'],
+            'password' => $this->formFields['password'],
+        ];
+
+        Auth::attempt($data, $this->formFields['remember']);
+
+        return redirect('home');
+
     }
     public function render()
     {
