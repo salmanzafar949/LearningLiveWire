@@ -5,6 +5,5 @@
                 @livewire('comments')
                 @livewire('tickets')
                 {{--                //<livewire:comments :comments="$comments"/>--}}
-
 </div>
 @endsection
