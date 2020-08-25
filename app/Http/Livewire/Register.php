@@ -29,11 +29,6 @@ class Register extends Component
 
         return redirect('/');
 
-        User::create([
-           'name' => $this->formFields.name,
-           'email' => $this->formFields.email,
-           'password' => Hash::make($this->formFields.password),
-        ]);
     }
 
     public function render()
